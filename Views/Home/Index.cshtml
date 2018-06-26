@@ -1,0 +1,41 @@
+@using BankAccts
+@model BankAccts.Models.RegisterViewModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+
+<div class="jumbotron">
+    <a href="/login"><button class="btn btn-default" style="float: right">login</button></a>
+    <h1>REGISTER</h1>
+</div>
+
+<Form class="form" asp-controller="Home" asp-action="register" method="post">
+    
+    <span asp-validation-for="FirstName"></span>
+    <br>
+    <label asp-for="FirstName"></label>
+    <input asp-for="FirstName" class="form-control" autofocus>
+
+    <span asp-validation-for="LastName"></span>
+    <br>
+    <label asp-for="LastName"></label>
+    <input asp-for="LastName" class="form-control">
+    
+
+    <span asp-validation-for="Email"></span>
+    <br>
+    <label asp-for="Email"></label>
+    <input asp-for="Email" class="form-control">
+
+    <span asp-validation-for="Password"></span>
+    <br>
+    <label asp-for="Password"></label>
+    <input asp-for="Password" class="form-control">
+
+    <span asp-validation-for="PassConf"></span>
+    <br>
+    <label asp-for="PassConf"></label>
+    <input asp-for="PassConf" class="form-control"><br>
+
+    <input type="submit" class="btn btn-success submit" value="Register">
+
+</Form>

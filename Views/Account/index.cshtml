@@ -1,0 +1,59 @@
+@model BankAccts.Models.BankViewModel
+@using BankAccts
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/account"><span class="glyphicon glyphicon-home"></span> bank</a>
+    </div>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+    </ul>
+  </div>
+</nav>
+<div class="jumbotron">
+    <h2>Welcome your Bank Account, @ViewBag.CurrentUser.FirstName</h2>
+    
+</div>
+
+<div class="row">
+    <div class="col-xs-6 balance">
+        <h3 class="center">Current balance: $@ViewBag.CurrentUser.Balance</h3>
+    </div>
+
+    <div class="col-xs-6 balance">
+        <form asp-controller="Account" asp-action="addTrans" method="post" class="form">
+            <div class="row">
+                <div class="col-xs-8 deposit">
+                    <input style="text-align: center" type="number" class="form-control" asp-for="Amount" placeholder="Enter amount to deposit or withdraw">
+                    <span asp-validation-for="Amount"></span>
+                </div>
+                <div class="col-xs-2 deposit">
+                    <input type="submit" value="Submit" class="btn btn-success">
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-12 ledger">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Amount</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach(var transaction in @ViewBag.Transactions){
+                    <tr>
+                        <td>$@transaction.Amount</td>
+                        <td>@transaction.XDate</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
